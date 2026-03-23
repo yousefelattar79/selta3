@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#how-it-works", label: "How it Works" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" }
+  { href: "#solution", label: "Solution" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#benefits", label: "Benefits" },
+  { href: "#why-selta", label: "Why Selta" }
 ]
 
 export function Navigation() {
@@ -34,19 +34,14 @@ export function Navigation() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          {/* Minimalist S Logo */}
-          <svg viewBox="0 0 32 32" className="w-8 h-8">
-            <path
-              d="M22 10C22 10 19.5 7 16 7C12.5 7 10 10 10 12.5C10 15 12.5 16.5 16 18C19.5 19.5 22 21 22 23.5C22 26 19.5 29 16 29C12.5 29 10 26 10 26"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </svg>
-          <span className="font-semibold text-lg text-white" style={{ fontFamily: 'var(--font-display)' }}>
+        {/* Logo - Gradient Lightning Bolt */}
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <span className="font-bold text-xl text-white" style={{ fontFamily: 'var(--font-display)' }}>
             Selta AI
           </span>
         </div>
@@ -57,7 +52,7 @@ export function Navigation() {
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-[#94A3B8] hover:text-white transition-colors text-sm font-medium"
+              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
             >
               {link.label}
             </button>
@@ -68,9 +63,9 @@ export function Navigation() {
         <div className="hidden md:block">
           <Button
             onClick={() => handleNavClick("#contact")}
-            className="bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-full px-6 font-medium"
+            className="magnetic-btn bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg shadow-blue-500/30"
           >
-            Smarter AI Demo
+            Book a Demo
           </Button>
         </div>
 
@@ -85,7 +80,7 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass border-t border-[#3B82F6]/20">
+        <div className="md:hidden glass border-t border-violet-500/20">
           <div className="px-6 py-4 space-y-4">
             {navLinks.map((link) => (
               <button
@@ -98,9 +93,9 @@ export function Navigation() {
             ))}
             <Button
               onClick={() => handleNavClick("#contact")}
-              className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-full"
+              className="w-full bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-full"
             >
-              Smarter AI Demo
+              Book a Demo
             </Button>
           </div>
         </div>

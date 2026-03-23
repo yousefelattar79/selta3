@@ -49,9 +49,9 @@ export function ContactSection() {
   }
 
   return (
-    <section className="relative py-24 overflow-hidden" id="contact" style={{ background: 'linear-gradient(180deg, #080B14 0%, #0D1117 100%)' }}>
-      {/* Background effects */}
-      <div className="absolute inset-0 cosmic-bg" />
+    <section className="relative py-24 overflow-hidden" id="contact" style={{ background: '#030712' }}>
+      {/* Section glow */}
+      <div className="section-glow top-0" />
       
       {/* Nebula effects */}
       <div className="nebula nebula-blue w-[500px] h-[500px] bottom-0 right-0 animate-pulse" style={{ animationDuration: '10s' }} />

@@ -325,3 +325,159 @@ html {
     0 0 120px rgba(139, 92, 246, 0.2),
     inset 0 0 60px rgba(59, 130, 246, 0.1);
 }
+
+/* 3D AI Core animations */
+@keyframes coreFloat {
+  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+  25% { transform: translateY(-20px) rotateX(5deg) rotateY(10deg); }
+  50% { transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg); }
+  75% { transform: translateY(-25px) rotateX(3deg) rotateY(-10deg); }
+}
+
+@keyframes ringRotate {
+  from { transform: rotateX(70deg) rotateZ(0deg); }
+  to { transform: rotateX(70deg) rotateZ(360deg); }
+}
+
+@keyframes spherePulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 60px rgba(59, 130, 246, 0.4),
+      0 0 120px rgba(139, 92, 246, 0.3),
+      inset 0 0 60px rgba(96, 165, 250, 0.2);
+  }
+  50% { 
+    box-shadow: 
+      0 0 80px rgba(59, 130, 246, 0.6),
+      0 0 150px rgba(139, 92, 246, 0.4),
+      inset 0 0 80px rgba(96, 165, 250, 0.3);
+  }
+}
+
+@keyframes centerGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { top: 6px; opacity: 1; }
+  50% { top: 20px; opacity: 0.5; }
+}
+
+/* AI Core Container */
+.ai-core-container {
+  perspective: 1000px;
+}
+
+.ai-core {
+  transform-style: preserve-3d;
+  animation: coreFloat 6s ease-in-out infinite;
+}
+
+/* Floating animations */
+.float-1 { animation: float1 8s ease-in-out infinite; }
+.float-2 { animation: float2 10s ease-in-out infinite; }
+.float-3 { animation: float3 12s ease-in-out infinite; }
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-15px) translateX(10px); }
+  50% { transform: translateY(-5px) translateX(-5px); }
+  75% { transform: translateY(-20px) translateX(5px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  33% { transform: translateY(-10px) translateX(-10px) rotate(5deg); }
+  66% { transform: translateY(-20px) translateX(5px) rotate(-5deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+
+/* Magnetic button effect */
+.magnetic-btn {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Section divider glow */
+.section-glow {
+  position: absolute;
+  width: 60%;
+  height: 1px;
+  left: 20%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    rgba(139, 92, 246, 0.3),
+    transparent);
+}
+
+/* Tilt card effect */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.tilt-card-inner {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+}
+
+/* Icon glow */
+.icon-glow {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Flow line animation */
+.flow-line {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0.1),
+    rgba(139, 92, 246, 0.5),
+    rgba(59, 130, 246, 0.1));
+}
+
+.flow-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 20px #8B5CF6;
+  animation: flowMove 3s ease-in-out infinite;
+}
+
+@keyframes flowMove {
+  0% { left: 0; }
+  50% { left: calc(100% - 12px); }
+  100% { left: 0; }
+}
+
+/* Scroll indicator */
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 8px;
+  background: #8B5CF6;
+  border-radius: 2px;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollBounce 2s ease-in-out infinite;
+}

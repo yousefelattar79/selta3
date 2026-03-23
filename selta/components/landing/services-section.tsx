@@ -1,100 +1,108 @@
 "use client"
 
-import { MessageSquare, Cog, Users, Zap, Clock, TrendingUp } from "lucide-react"
+import { MessageSquare, Phone, Calendar, RefreshCw, Bell, Clock } from "lucide-react"
 
-const services = [
+const solutions = [
   {
     icon: MessageSquare,
-    title: "AI Chatbots",
-    description: "Intelligent conversational agents that handle customer inquiries 24/7, providing instant responses and seamless support.",
-    features: ["Natural language understanding", "Multi-platform integration", "Custom personality training"]
+    title: "AI Chat Automation",
+    description: "Intelligent conversational AI that handles inquiries, qualifies leads, and engages customers around the clock.",
+    status: "Always Active",
+    color: "from-blue-500 to-cyan-500",
+    statusColor: "text-blue-400"
   },
   {
-    icon: Cog,
-    title: "Business Automation",
-    description: "Streamline your workflows with AI-powered automation that eliminates repetitive tasks and boosts productivity.",
-    features: ["Workflow optimization", "Task automation", "System integrations"]
+    icon: Phone,
+    title: "AI Voice Handling",
+    description: "Natural voice AI that answers calls, books appointments, and provides information with human-like clarity.",
+    status: "Natural Speech",
+    color: "from-violet-500 to-purple-500",
+    statusColor: "text-violet-400"
   },
   {
-    icon: Users,
-    title: "Lead Generation",
-    description: "Capture and qualify leads automatically with intelligent systems that never miss an opportunity.",
-    features: ["Smart lead scoring", "Automated follow-ups", "CRM integration"]
+    icon: Calendar,
+    title: "Smart Booking Engine",
+    description: "Automated scheduling that syncs with your calendar, eliminates double-bookings, and maximizes capacity.",
+    status: "Auto-Optimized",
+    color: "from-emerald-500 to-teal-500",
+    statusColor: "text-emerald-400"
+  },
+  {
+    icon: RefreshCw,
+    title: "Intelligent Rescheduling",
+    description: "Proactive AI that detects cancellations and automatically offers alternatives to recover appointments.",
+    status: "Recovery Mode",
+    color: "from-amber-500 to-orange-500",
+    statusColor: "text-amber-400"
+  },
+  {
+    icon: Bell,
+    title: "Automated Reminders",
+    description: "Multi-channel reminder sequences via SMS, email, and WhatsApp that dramatically reduce no-shows.",
+    status: "Multi-Channel",
+    color: "from-pink-500 to-rose-500",
+    statusColor: "text-pink-400"
+  },
+  {
+    icon: Clock,
+    title: "24/7 Client Engagement",
+    description: "Continuous engagement that nurtures leads, answers questions, and converts prospects while you sleep.",
+    status: "Never Offline",
+    color: "from-indigo-500 to-blue-500",
+    statusColor: "text-indigo-400"
   }
-]
-
-const stats = [
-  { icon: Zap, value: "500+", label: "Automations Deployed" },
-  { icon: Clock, value: "24/7", label: "Always Available" },
-  { icon: TrendingUp, value: "3x", label: "Average ROI Increase" }
 ]
 
 export function ServicesSection() {
   return (
-    <section className="relative py-24 overflow-hidden cosmic-bg" id="services">
-      {/* Background */}
-      <div className="absolute inset-0 cosmic-bg" />
+    <section className="relative py-32 overflow-hidden" id="solution" style={{ background: '#030712' }}>
+      {/* Section glow line */}
+      <div className="section-glow top-0" />
       
-      {/* Top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent" />
-      
-      {/* Nebula effects */}
-      <div className="nebula nebula-blue w-[400px] h-[400px] top-1/4 left-0 animate-pulse" style={{ animationDuration: '8s' }} />
-      <div className="nebula nebula-purple w-[300px] h-[300px] bottom-1/4 right-0 animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+      {/* Background elements */}
+      <div className="absolute top-1/2 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full glass text-[#3B82F6] text-sm mb-4">
-            Our Services
+          <span className="inline-block px-4 py-2 rounded-full glass text-blue-400 text-sm mb-4">
+            The Solution
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white" style={{ fontFamily: 'var(--font-display)' }}>
-            Powerful <span className="gradient-text">AI Solutions</span> for Growth
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            Your <span className="gradient-text">AI-Powered</span> Command Center
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            Transform your business operations with cutting-edge AI technology designed to scale.
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A comprehensive suite of intelligent automation modules working in harmony.
           </p>
         </div>
         
-        {/* Services grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
+        {/* Solutions grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((solution, index) => (
             <div 
-              key={service.title}
-              className="glass-card rounded-2xl p-8 group cursor-pointer"
+              key={solution.title}
+              className="tilt-card"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#3B82F6]/20 to-[#8B5CF6]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <service.icon className="w-7 h-7 text-[#3B82F6]" />
+              <div className="tilt-card-inner glass-card rounded-3xl p-8 h-full group">
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${solution.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                  <solution.icon className="w-7 h-7 text-white" />
+                </div>
+                
+                <h3 className="font-bold text-xl mb-3 text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                  {solution.title}
+                </h3>
+                
+                <p className="text-gray-400 leading-relaxed">
+                  {solution.description}
+                </p>
+                
+                <div className="mt-6 flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${solution.statusColor.replace('text-', 'bg-')} animate-pulse`} />
+                  <span className={`text-sm ${solution.statusColor}`}>{solution.status}</span>
+                </div>
               </div>
-              
-              <h3 className="text-xl font-bold mb-4 text-white" style={{ fontFamily: 'var(--font-display)' }}>
-                {service.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {service.description}
-              </p>
-              
-              <ul className="space-y-2">
-                {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center glass-card rounded-xl p-6">
-              <stat.icon className="w-6 h-6 text-[#3B82F6] mx-auto mb-3" />
-              <div className="text-2xl md:text-3xl font-bold gradient-text mb-1">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}
         </div>

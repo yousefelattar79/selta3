@@ -1,18 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import { X } from "lucide-react"
+import { X, Facebook, Instagram, Linkedin, Youtube, Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const footerLinks = {
-  services: [
-    { label: "AI Chatbots", href: "#services" },
-    { label: "Automation", href: "#services" },
-    { label: "Lead Generation", href: "#services" }
+  product: [
+    { label: "Solution", href: "#solution" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Benefits", href: "#benefits" },
+    { label: "Why Selta", href: "#why-selta" }
   ],
   company: [
-    { label: "About", href: "#about" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "About Us", href: "#about" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Contact", href: "#contact" }
   ],
@@ -21,6 +21,13 @@ const footerLinks = {
     { label: "Terms & Conditions", modal: "terms" }
   ]
 }
+
+const socialLinks = [
+  { icon: Facebook, href: "https://facebook.com/seltaai", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/seltaai", label: "Instagram" },
+  { icon: Linkedin, href: "https://linkedin.com/company/seltaai", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/@seltaai", label: "YouTube" }
+]
 
 const privacyContent = {
   title: "Privacy Policy",
@@ -120,45 +127,66 @@ export function Footer() {
 
   return (
     <>
-      <footer className="relative pt-16 pb-8 overflow-hidden" style={{ background: '#080B14' }}>
-        {/* Top border */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent" />
+      <footer className="relative pt-20 pb-8 overflow-hidden" style={{ background: '#030712' }}>
+        {/* Top border glow */}
+        <div className="section-glow top-0" />
         
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
             {/* Brand */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <svg viewBox="0 0 32 32" className="w-8 h-8">
-                  <path
-                    d="M22 10C22 10 19.5 7 16 7C12.5 7 10 10 10 12.5C10 15 12.5 16.5 16 18C19.5 19.5 22 21 22 23.5C22 26 19.5 29 16 29C12.5 29 10 26 10 26"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                </svg>
-                <span className="font-semibold text-lg text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <span className="font-bold text-xl text-white" style={{ fontFamily: 'var(--font-display)' }}>
                   Selta AI
                 </span>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                AI-powered automation systems that transform the way businesses communicate and grow.
+              <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+                AI-powered automation systems that transform the way businesses communicate, engage clients, and scale their operations 24/7.
               </p>
-              <p className="text-muted-foreground text-sm">
-                support@seltaai.com
-              </p>
+              
+              {/* Contact Info */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-400">
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm">support@seltaai.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400">
+                  <Phone className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm">+971 XX XXX XXXX</span>
+                </div>
+              </div>
+              
+              {/* Social Links */}
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white hover:border-violet-500/50 transition-all duration-300"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
             </div>
             
-            {/* Services */}
+            {/* Product */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-3">
-                {footerLinks.services.map((link) => (
+              <h4 className="font-semibold text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>Product</h4>
+              <ul className="space-y-4">
+                {footerLinks.product.map((link) => (
                   <li key={link.label}>
                     <button
                       onClick={() => handleLinkClick(link.href)}
-                      className="text-muted-foreground hover:text-white transition-colors text-sm"
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </button>
@@ -169,13 +197,13 @@ export function Footer() {
             
             {/* Company */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-3">
+              <h4 className="font-semibold text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>Company</h4>
+              <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
                     <button
                       onClick={() => handleLinkClick(link.href)}
-                      className="text-muted-foreground hover:text-white transition-colors text-sm"
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </button>
@@ -186,13 +214,13 @@ export function Footer() {
             
             {/* Legal */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-3">
+              <h4 className="font-semibold text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>Legal</h4>
+              <ul className="space-y-4">
                 {footerLinks.legal.map((link) => (
                   <li key={link.label}>
                     <button
                       onClick={() => handleLinkClick(undefined, link.modal)}
-                      className="text-muted-foreground hover:text-white transition-colors text-sm"
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </button>
@@ -203,20 +231,20 @@ export function Footer() {
           </div>
           
           {/* Bottom */}
-          <div className="pt-8 border-t border-[#3B82F6]/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm">
+          <div className="pt-8 border-t border-violet-500/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-sm">
               {new Date().getFullYear()} Selta AI. All rights reserved.
             </p>
             <div className="flex gap-6">
               <button
                 onClick={() => setActiveModal("privacy")}
-                className="text-muted-foreground hover:text-white transition-colors text-sm"
+                className="text-gray-500 hover:text-white transition-colors text-sm"
               >
                 Privacy
               </button>
               <button
                 onClick={() => setActiveModal("terms")}
-                className="text-muted-foreground hover:text-white transition-colors text-sm"
+                className="text-gray-500 hover:text-white transition-colors text-sm"
               >
                 Terms
               </button>
@@ -228,14 +256,14 @@ export function Footer() {
       {/* Legal Modal */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden animate-slide-up">
+          <div className="glass-card rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-hidden animate-slide-up">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-[#3B82F6]/20">
+            <div className="flex items-center justify-between p-6 border-b border-violet-500/20">
               <div>
                 <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
                   {modalContent.title}
                 </h2>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-400">
                   Last updated: {modalContent.lastUpdated}
                 </p>
               </div>
@@ -243,7 +271,7 @@ export function Footer() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setActiveModal(null)}
-                className="text-muted-foreground hover:text-white"
+                className="text-gray-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </Button>
@@ -251,7 +279,7 @@ export function Footer() {
             
             {/* Modal Content */}
             <div className="p-6 overflow-y-auto max-h-[60vh]">
-              <p className="text-muted-foreground mb-6">
+              <p className="text-gray-400 mb-6">
                 At Selta AI, we respect your privacy and are committed to protecting your personal information.
               </p>
               
@@ -259,7 +287,7 @@ export function Footer() {
                 {modalContent.sections.map((section, index) => (
                   <div key={index}>
                     <h3 className="font-semibold text-white mb-2">{section.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
+                    <p className="text-gray-400 text-sm leading-relaxed whitespace-pre-line">
                       {section.content}
                     </p>
                   </div>
@@ -268,10 +296,10 @@ export function Footer() {
             </div>
             
             {/* Modal Footer */}
-            <div className="p-6 border-t border-[#3B82F6]/20">
+            <div className="p-6 border-t border-violet-500/20">
               <Button
                 onClick={() => setActiveModal(null)}
-                className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-full"
+                className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white rounded-full"
               >
                 I Understand
               </Button>
