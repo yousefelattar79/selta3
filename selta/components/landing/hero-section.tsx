@@ -1,20 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
-import { SeltaLogoLight } from "./selta-logo"
+import { Mouse } from "lucide-react"
 
 export function HeroSection() {
-  const [isHovering, setIsHovering] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mounted, setMounted] = useState(false)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - rect.left - rect.width / 2) / rect.width
-    const y = (e.clientY - rect.top - rect.height / 2) / rect.height
-    setMousePosition({ x, y })
-  }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const handleBookDemo = () => {
     const contactSection = document.getElementById('contact')
     if (contactSection) {
@@ -23,123 +19,123 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="hero">
-      {/* Grid background */}
-      <div className="absolute inset-0 grid-bg" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 cosmic-bg" id="hero">
+      {/* Starfield overlay */}
+      <div className="absolute inset-0 cosmic-bg" />
       
-      {/* Ambient glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      {/* Nebula effects */}
+      <div className="nebula nebula-blue w-[600px] h-[600px] top-1/4 right-0 animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="nebula nebula-purple w-[500px] h-[500px] bottom-1/4 left-0 animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
         <div className="text-center lg:text-left">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 animate-slide-up">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 ${mounted ? 'animate-slide-up' : 'opacity-0'}`}>
+            <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse" />
             <span className="text-sm text-muted-foreground">AI-Powered Business Automation</span>
           </div>
           
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-slide-up" style={{ animationDelay: '0.1s', fontFamily: 'var(--font-display)' }}>
-            <span className="gradient-text">Smarter Conversations.</span>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 ${mounted ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s', fontFamily: 'var(--font-display)' }}>
+            <span className="gradient-text">Smarter</span>
+            <br />
+            <span className="gradient-text">Conversations.</span>
             <br />
             <span className="text-foreground">More Revenue.</span>
           </h1>
           
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed animate-slide-up mx-auto lg:mx-0" style={{ animationDelay: '0.2s' }}>
+          <p className={`text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed mx-auto lg:mx-0 ${mounted ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
             AI-powered automation systems eliminating missed leads and scaling business communication 24/7.
           </p>
           
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start ${mounted ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
             <Button 
               size="lg" 
               onClick={handleBookDemo}
-              className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 hover:scale-105 animate-pulse-glow"
+              className="bg-[#3B82F6] hover:bg-[#2563EB] text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 transition-all duration-300 hover:scale-105"
             >
-              Book a Demo
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Smarter AI Demo
             </Button>
             <Button 
               size="lg" 
               variant="outline"
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-primary/40 text-primary hover:bg-primary/10 px-8 py-6 text-lg rounded-full transition-all duration-300"
+              className="border-[#3B82F6]/40 text-[#3B82F6] hover:bg-[#3B82F6]/10 px-8 py-6 text-lg rounded-full transition-all duration-300"
             >
               Explore Services
             </Button>
           </div>
         </div>
         
-        {/* 3D AI Core Visual */}
-        <div className="flex justify-center lg:justify-end animate-slide-up" style={{ animationDelay: '0.4s' }}>
-          <div 
-            className="relative w-80 h-80 md:w-96 md:h-96 cursor-pointer"
-            style={{ perspective: '1000px' }}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => {
-              setIsHovering(false)
-              setMousePosition({ x: 0, y: 0 })
-            }}
-            onMouseMove={handleMouseMove}
-          >
-            <div 
-              className="absolute inset-0 animate-float transition-transform duration-200 ease-out"
-              style={{
-                transform: isHovering 
-                  ? `rotateY(${mousePosition.x * 25}deg) rotateX(${-mousePosition.y * 25}deg) scale(1.05)` 
-                  : 'rotateY(0deg) rotateX(0deg) scale(1)',
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              {/* Outer rings */}
-              <div 
-                className="absolute inset-0 rounded-full border border-primary/30 animate-spin" 
-                style={{ 
-                  animationDuration: isHovering ? '8s' : '20s',
-                  transition: 'animation-duration 0.3s ease'
-                }} 
-              />
-              <div 
-                className="absolute inset-8 rounded-full border border-accent/40 animate-spin" 
-                style={{ 
-                  animationDuration: isHovering ? '6s' : '15s', 
-                  animationDirection: 'reverse' 
-                }} 
-              />
-              <div 
-                className="absolute inset-16 rounded-full border border-primary/30 animate-spin" 
-                style={{ 
-                  animationDuration: isHovering ? '10s' : '25s' 
-                }} 
-              />
-              
-              {/* Core sphere with Selta Logo */}
-              <div 
-                className="absolute inset-24 rounded-full bg-gradient-to-br from-primary/40 via-accent/30 to-primary/20 shadow-2xl animate-pulse-glow transition-all duration-300"
-                style={{
-                  boxShadow: isHovering 
-                    ? '0 0 60px rgba(99, 102, 241, 0.5), 0 0 100px rgba(139, 92, 246, 0.3)' 
-                    : undefined
-                }}
-              >
-                <div 
-                  className="absolute inset-4 rounded-full bg-gradient-to-br from-foreground/90 via-primary/80 to-accent/60 flex items-center justify-center transition-transform duration-300"
-                  style={{
-                    transform: isHovering ? 'scale(1.1)' : 'scale(1)'
-                  }}
-                >
-                  <SeltaLogoLight className="w-14 h-14 text-background drop-shadow-lg" />
+        {/* 3D Planet Visual with Orbital Logo */}
+        <div className={`flex justify-center lg:justify-end ${mounted ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+          <div className="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px]">
+            {/* Outer orbital rings */}
+            <div className="absolute inset-0 orbital-ring" style={{ animationDuration: '25s' }} />
+            <div className="absolute inset-6 orbital-ring" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
+            <div className="absolute inset-12 orbital-ring" style={{ animationDuration: '30s' }} />
+            <div className="absolute inset-20 orbital-ring opacity-50" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
+            
+            {/* Orbital dots */}
+            <div className="absolute inset-0 animate-rotate-slow" style={{ animationDuration: '25s' }}>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#3B82F6] rounded-full shadow-lg shadow-[#3B82F6]" />
+            </div>
+            <div className="absolute inset-6 animate-rotate-slow" style={{ animationDuration: '20s', animationDirection: 'reverse' }}>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#8B5CF6] rounded-full shadow-lg shadow-[#8B5CF6]" />
+            </div>
+            <div className="absolute inset-12 animate-rotate-slow" style={{ animationDuration: '30s' }}>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#3B82F6] rounded-full shadow-lg shadow-[#3B82F6]" />
+            </div>
+            
+            {/* Planet container - 3D Earth */}
+            <div className="absolute inset-[60px] md:inset-[80px] lg:inset-[100px] rounded-full overflow-hidden animate-rotate-slow planet-glow" style={{ animationDuration: '60s' }}>
+              {/* Earth globe with CSS gradient */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#1a4a7a] via-[#0d2847] to-[#051525]">
+                {/* Continental shapes simulation */}
+                <div className="absolute inset-0 opacity-40">
+                  <div className="absolute top-[20%] left-[30%] w-[25%] h-[20%] bg-[#2d5a3d] rounded-full blur-sm transform rotate-12" />
+                  <div className="absolute top-[35%] left-[15%] w-[20%] h-[25%] bg-[#2d5a3d] rounded-full blur-sm" />
+                  <div className="absolute top-[25%] right-[20%] w-[30%] h-[35%] bg-[#2d5a3d] rounded-full blur-sm transform -rotate-6" />
+                  <div className="absolute bottom-[25%] left-[40%] w-[15%] h-[15%] bg-[#2d5a3d] rounded-full blur-sm" />
+                </div>
+                {/* Ocean shimmer */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#3B82F6]/10 to-transparent" />
+                {/* Atmosphere glow */}
+                <div className="absolute inset-0 rounded-full shadow-inner" style={{ boxShadow: 'inset -20px -20px 60px rgba(59, 130, 246, 0.3), inset 20px 20px 60px rgba(139, 92, 246, 0.1)' }} />
+              </div>
+              {/* Planet atmosphere outer glow */}
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-[#3B82F6]/20 via-transparent to-[#8B5CF6]/10" />
+            </div>
+            
+            {/* Central S Logo Badge */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+              <div className="relative">
+                {/* Glowing backdrop */}
+                <div className="absolute inset-0 bg-[#3B82F6]/20 rounded-full blur-xl animate-pulse" style={{ transform: 'scale(1.5)' }} />
+                
+                {/* Logo container */}
+                <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#1a1f2e] to-[#0d1117] border border-[#3B82F6]/30 flex items-center justify-center shadow-2xl">
+                  {/* Inner glow ring */}
+                  <div className="absolute inset-1 rounded-full border border-[#3B82F6]/20" />
+                  
+                  {/* S Logo */}
+                  <svg viewBox="0 0 40 40" className="w-10 h-10 md:w-12 md:h-12">
+                    <path
+                      d="M28 12C28 12 25 9 20 9C15 9 12 12 12 15C12 18 15 20 20 22C25 24 28 26 28 29C28 32 25 35 20 35C15 35 12 32 12 32"
+                      stroke="white"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                    {/* Orbital accents on logo */}
+                    <circle cx="28" cy="12" r="2" fill="white" opacity="0.8" />
+                    <circle cx="12" cy="32" r="2" fill="white" opacity="0.8" />
+                  </svg>
                 </div>
               </div>
-              
-              {/* Floating particles */}
-              <div className="absolute top-8 left-8 w-3 h-3 bg-primary rounded-full animate-pulse" />
-              <div className="absolute top-12 right-12 w-2 h-2 bg-accent rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <div className="absolute bottom-16 left-16 w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-              <div className="absolute bottom-8 right-8 w-3 h-3 bg-accent rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
             </div>
           </div>
         </div>
@@ -147,8 +143,8 @@ export function HeroSection() {
       
       {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-primary/40 flex justify-center pt-2">
-          <div className="w-1 h-3 bg-primary rounded-full animate-pulse" />
+        <div className="w-8 h-12 rounded-full border-2 border-[#3B82F6]/40 flex justify-center pt-2 bg-[#0d1117]/50 backdrop-blur-sm">
+          <Mouse className="w-4 h-4 text-[#3B82F6] animate-pulse" />
         </div>
       </div>
     </section>
